@@ -1,2 +1,2 @@
 #!/bin/bash
-echo {a..z}{a..z} | tr " " "\n2 | grep -v "oo"
+printf "%.2" $NUM | sort
