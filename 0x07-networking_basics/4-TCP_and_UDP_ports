@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#Script that displays all listening sockets
+#0x07-networking_basics by Ofiare Khoko
+netstat -l --program
