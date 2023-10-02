@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Itconfigures a new Ubuntu machine nginx
+# New Ubuntu machine nginx
 apt-get update
 apt-get install software-properties-common -y
 add-apt-repository ppa:vbernat/haproxy-1.7 -y
