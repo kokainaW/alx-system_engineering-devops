@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # sets up your client SSH configuration file
 
-file { "ect/ssh/ssh_config":
+file { 'ect/ssh/ssh_cofig':
 	ensure => present,
 
 content =>"
@@ -11,4 +11,5 @@ content =>"
 	IdentityFile ~/.ssh/school
 	PasswordAuthentication no
 	",
+
 }
