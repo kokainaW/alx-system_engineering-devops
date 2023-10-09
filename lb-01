@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# lb-01 login
+
+ssh -i ~/.ssh/school ubuntu@54.90.50.180
