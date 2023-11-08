@@ -1,29 +1,47 @@
 #!/usr/bin/env bash
-# Create a script to install and configure HAProxy on lb-01 server
-# Install and configure HAproxy on my lb-01 server
+# lb-01 config
 
-sudo apt-get -y update
-apt-get -y install haproxy
+sudo apt-get install -y haproxy
 
-# edit config file
-server_config=\
-"
-frontend  kokainaW_frontend
-        bind *:80
-        mode http
-        default_backend kokainaW_backend
-backend kokainaW_backend
-        balance roundrobin
-        server 336555-web-01 100.25.197.24:80 check
-        server 336555-web-02 54.236.25.9:80 check
-"
-echo "$server_config" | sudo tee -a /etc/haproxy/haproxy.cfg
+echo "ENABLED=1" >> /etc/default/haproxy
+mv /etc/haproxy/haproxy.cfg{,.original}
+touch /etc/haproxy/haproxy.cfg
 
-# enable haproxy to be started by init script
-echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
+printf %s "global
+    log 127.0.0.1 local0 notice
+    maxconn 2000
+    user haproxy
+    group haproxy
 
-# Testing the HAproxy configuration file
-sudo haproxy -c -f /etc/haproxy/haproxy.cfg
+defaults
+    log     global
+    mode    http
+    option  httplog
+    option  dontlognull
+    retries 3
+    option redispatch
+    timeout connect  5000
+    timeout client  30000
+    timeout server  30000
+    errorfile 400 /etc/haproxy/errors/400.http
+    errorfile 403 /etc/haproxy/errors/403.http
+    errorfile 408 /etc/haproxy/errors/408.http
+    errorfile 500 /etc/haproxy/errors/500.http
+    errorfile 502 /etc/haproxy/errors/502.http
+    errorfile 503 /etc/haproxy/errors/503.http
+    errorfile 400 /etc/haproxy/errors/400.http
 
-# Restart the Nginx service
+frontend http-in
+    timeout client  30000
+    bind 0:80
+    default_backend servers
+backend servers
+    timeout connect  3000
+    timeout server  30000
+    balance roundrobin
+    server 336555-web-01 100.25.197.24:80 check
+    server 336555-web-02 54.236.25.9:80 check
+
+" >> /etc/haproxy/haproxy.cfg
+
 sudo service haproxy restart
