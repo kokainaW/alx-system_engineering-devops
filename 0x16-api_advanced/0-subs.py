@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""Module counting how many subs"""
-
-
+"""counting how many subs"""
 def number_of_subscribers(subreddit):
     """Queries the Reddit API and returns the number of subscribers
     to the subreddit"""
