@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""counting how many subs"""
+"""
+counting how many subs
+"""
 
 
 def number_of_subscribers(subreddit):
