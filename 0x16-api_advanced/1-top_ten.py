@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Module for Top Ten"""
+"""
+Module for Top Ten
+"""
 
 
 def top_ten(subreddit):
