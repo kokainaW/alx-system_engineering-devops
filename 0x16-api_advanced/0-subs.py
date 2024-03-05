@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Script function that queries subscribers on a given Reddit subreddit.
+Script function that queries subscribers given by Reddit subreddit.
 """
 
 import requests
