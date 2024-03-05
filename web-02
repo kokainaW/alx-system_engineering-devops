@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# web-02 login
-
-ssh -i ~/.ssh/school ubuntu@54.236.25.9

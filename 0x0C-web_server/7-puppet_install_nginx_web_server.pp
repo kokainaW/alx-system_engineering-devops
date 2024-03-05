@@ -21,4 +21,4 @@ exec {'redirect_me':
 service {'nginx':
 	ensure => running,
 	require => Package['nginx']
-}
+7-puppet_install_nginx_web_server.pp}
